@@ -1,21 +1,25 @@
-![github_readme_logo.svg](https://cdn.discordapp.com/attachments/697810943714918430/716269042414911558/wingetdotrun_blue_logo.png)
+<center>
 
-# winget.run
-A modern web-app and API for viewing, finding, and easily installing [winget](https://github.com/microsoft/winget-pkgs) packages.
+  ![github_readme_logo.svg](https://cdn.discordapp.com/attachments/697810943714918430/716269042414911558/wingetdotrun_blue_logo.png)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/8a74621e634a6e9b9561/maintainability)]()
-[![Maintainability](https://api.codeclimate.com/v1/badges/8a74621e634a6e9b9561/maintainability)]()
-[![Maintainability](https://api.codeclimate.com/v1/badges/8a74621e634a6e9b9561/maintainability)]()
+  # winget.run
+  A modern web-app and API for viewing, finding, and easily installing [winget](https://github.com/microsoft/winget-pkgs) packages.
 
-:star: We appreciate your star, it helps!
+  [![Maintainability](https://api.codeclimate.com/v1/badges/8a74621e634a6e9b9561/maintainability)]()
+  [![Maintainability](https://api.codeclimate.com/v1/badges/8a74621e634a6e9b9561/maintainability)]()
+  [![Maintainability](https://api.codeclimate.com/v1/badges/8a74621e634a6e9b9561/maintainability)]()
 
-## Index
+  :star: We appreciate your star, it helps!
+
+</center>
+
+## Contents
 - [Features](#Features)
 - [Api](#Api)
 - [Community](#Community)
 - [Roadmap](#Roadmap)
 - [Contributing](#Contributing)
-- [Support us](#Support\ us)
+- [Support us](#Support us)
 - [Authors](#Authors)
 - [Acknowledgments](#Acknowledgments)
 - [License](#License)
@@ -36,7 +40,7 @@ With [our website](), you'll never again need to browse the Windows 10 store or 
 - Works with all package versions
 
 #### Modern design
-- Modern and professional design
+- Modern and professional design.
 - Responsive; works on both desktop and mobile at varying screen sizes.
 - Accessibility; our website works with screen-readers and keyboard-only input.
 
@@ -57,22 +61,22 @@ While we think that [winget.run]() is currently in a usable and complete state, 
 - Basic usable API.
 - Basic usable website.
 - Automatically importing new packages from Microsoft's [winget repo]().
-- CI/CD
-- Hosting and deployments
+- CI/CD.
+- Hosting and deployments.
 
 #### Current 
-- Getting more users
-- Donations/funding to cover running costs
-- Code cleanup and refactoring
-- Unit and integration testing
+- Getting more users.
+- Donations/funding to cover running costs.
+- Code cleanup and refactoring.
+- Unit and integration testing.
 
 #### Future features
-- Public API
-- Package importer rewrite
-- Database migrations
-- Observability (devops)
-- A/B deployments (devops)
-- Canary deployments (devops)
+- Public API.
+- Package importer rewrite.
+- Database migrations.
+- Observability. (devops)
+- Blue/green deployments. (devops)
+- Canary deployments. (devops)
 
 We will work on improving the roadmap down the line as well as solidifying a release schedule. Community requests are, of course, welcome. If you want to report an issue, request a feature, or even have a question, don't be afraid to [open a ticket]()!
 
@@ -81,8 +85,9 @@ Issues and pull requests are welcome. We don't have a contribution guide as of y
 - There should be no pushes directly to master or develop.
 - PRs to master require at least 2 reviews, develop requires at least 1.
 - When making contributions, your current working branch should be named as follows: `feature/<ticket_number>_<short-description>`, e.g. `feature/12_api-ratelimiting`
-- All code should pass linting and tests
-- We'd appreciate it if you wrote unit tests for your code, although that's not required for now
+- All PRs should be to develop (and not master).
+- All code should pass linting and tests.
+- We'd appreciate it if you wrote unit tests for your code, although that's not required for now.
 
 Alongside the contribution guide, we're also currently taking measures in order to make the avid contributor's workflow easier;
 - We will be setting up ZenHub boards for the project.
