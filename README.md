@@ -10,20 +10,18 @@ A modern web-app and API for viewing, finding, and easily installing [winget](ht
 :star: We appreciate your star, it helps!
 
 ## Index
-- ...
-- Features
-- Api
-- Community
-- Roadmap
-- Contributing
-- Support
-- Acknowledgments
-- License
-
-## Why winget.run?
+- [Features](#Features)
+- [Api](#Api)
+- [Community](#Community)
+- [Roadmap](#Roadmap)
+- [Contributing](#Contributing)
+- [Support us](#Support\ us)
+- [Authors](#Authors)
+- [Acknowledgments](#Acknowledgments)
+- [License](#License)
 
 ## Features
-You can visit our website at [winget.run](https://winget.run). Below are some of our features with more coming soon!
+With [our website](), you'll never again need to browse the Windows 10 store or look through websites for exe downloads and go through the laborious installation process time and time again (assuming that what you're looking for is [available on winget]() of course). We understand how frustrating this process can be, especially after a fresh Windows install, thus, we made this tool to streamline the process! Below are some of our features with more coming soon!
 
 #### Package navigation
 - Access all of Microsoft's Windows 10 packages through a modern interface.
@@ -79,13 +77,30 @@ While we think that [winget.run]() is currently in a usable and complete state, 
 We will work on improving the roadmap down the line as well as solidifying a release schedule. Community requests are, of course, welcome. If you want to report an issue, request a feature, or even have a question, don't be afraid to [open a ticket]()!
 
 ## Contributing
-- join our discord
+Issues and pull requests are welcome. We don't have a contribution guide as of yet but here are some pointers that we'd like to see followed as much as possible:
+- There should be no pushes directly to master or develop.
+- PRs to master require at least 2 reviews, develop requires at least 1.
+- When making contributions, your current working branch should be named as follows: `feature/<ticket_number>_<short-description>`, e.g. `feature/12_api-ratelimiting`
+- All code should pass linting and tests
+- We'd appreciate it if you wrote unit tests for your code, although that's not required for now
 
-## (donations section)
-Something about servers not being cheap and me wanting a bigger devops budget
+Alongside the contribution guide, we're also currently taking measures in order to make the avid contributor's workflow easier;
+- We will be setting up ZenHub boards for the project.
+- All issues are currently listed as TODOs in the code, those will be converted to GitHub issues shortly.
+- Issue templates will be making an appearance soon™.
+
+Additional guides, such as setting up a development environment, may be provided in our other repos (api/web) with more sepcific information for those parts of the project. For more in-depth information and queries, please join our [Discord]() server and talk to one of us.
+
+## Support us
+If you don't know programming and would still like to support the project, please [consider donating]()! Servers aren't free, far from it, and at the time of writing, we're running at a loss. Any amount is highly appreciated and will allow us to continue supporting and improving [winget.run]() into the future.
+
+## Authors
+- Lukasz Niezabitowski
+- Matthew Watt
+- Ryan Larkin
 
 ## Acknowledgments
 - My beloved coffee machine for making glorious coffee in the morning (and night) and keeping me awake during these 12 hour programming sessions as we rushed to get this released.
 
 ## License
-- go ask us for perms thx- some
+We currently don't have a license, but we're working on it and we will shortly!
