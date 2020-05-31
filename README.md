@@ -3,11 +3,16 @@
   ![github_readme_logo.svg](https://cdn.discordapp.com/attachments/697810943714918430/716269042414911558/wingetdotrun_blue_logo.png)
 
   # winget.run
-  A modern web-app and API for viewing, finding, and easily installing [winget](https://github.com/microsoft/winget-pkgs) packages.
+  A modern web-app and API for viewing, finding, and easily installing [winget](https://github.com/microsoft/winget-cli) packages.
 
-  [![Maintainability](https://api.codeclimate.com/v1/badges/8a74621e634a6e9b9561/maintainability)]()
-  [![Maintainability](https://api.codeclimate.com/v1/badges/8a74621e634a6e9b9561/maintainability)]()
-  [![Maintainability](https://api.codeclimate.com/v1/badges/8a74621e634a6e9b9561/maintainability)]()
+  [![](https://img.shields.io/website/https/winget.run?style=flat-square)]()
+  [![](https://img.shields.io/github/v/release/winget-run/web?style=flat-square)]()
+  [![](https://img.shields.io/github/workflow/status/winget-run/web/CI/CD/master?style=flat-square)]()
+  [![](https://img.shields.io/github/issues/winget-run/web?style=flat-square)]()
+  [![](https://img.shields.io/github/issues-pr/winget-run/web?style=flat-square)]()
+  [![](https://img.shields.io/discord/697810943714918430?style=flat-square)]()
+  [![](https://img.shields.io/github/license/winget-run/web?style=flat-square)]()
+  [![]()]()
 
   :star: We appreciate your star, it helps!
 
@@ -25,7 +30,7 @@
 - [License](#License)
 
 ## Features
-With [our website](), you'll never again need to browse the Windows 10 store or look through websites for exe downloads and go through the laborious installation process time and time again (assuming that what you're looking for is [available on winget]() of course). We understand how frustrating this process can be, especially after a fresh Windows install, thus, we made this tool to streamline the process! Below are some of our features with more coming soon!
+With [our website](https://winget.run/), you'll never again need to browse the Windows 10 store or look through websites for exe downloads and go through the laborious installation process time and time again (assuming that what you're looking for is [available on winget](https://github.com/microsoft/winget-pkgs) of course). We understand how frustrating this process can be, especially after a fresh Windows install, thus, we made this tool to streamline the process! Below are some of our features with more coming soon!
 
 #### Package navigation
 - Access all of Microsoft's Windows 10 packages through a modern interface.
@@ -45,22 +50,22 @@ With [our website](), you'll never again need to browse the Windows 10 store or 
 - Accessibility; our website works with screen-readers and keyboard-only input.
 
 ## API
-Our API provides the required functionality for our website and allows us to query live package data. All relevant infomation can be found in our [GitHub repo]().
+Our API provides the required functionality for our website and allows us to query live package data. All relevant infomation can be found in our [GitHub repo](https://github.com/winget-run/api).
 
 As we are still early in development, our API has not yet been made public and is subject to breaking changes without notice. If you'd like access, please don't hesitate to [contact us]() and we can work something out!
 
 ## Community
-We have a [Discord]() server! Come join if you're interested in the project, have some questions for us, or just want to hang out. If you're more of a [Twitter]() person, we also have an account on there.
+We have a [Discord]() server! Come join if you're interested in the project, have some questions for us, or just want to hang out. If you're more of a [Twitter](https://twitter.com/wingetdotrun) person, we also have an account on there.
 
 We'll make our best efforts to post any updates and interact with the community on both platforms so if you're on any one of those then you're set.
 
 ## Roadmap
-While we think that [winget.run]() is currently in a usable and complete state, we have many features planned going forward in the hopes of further impoving user experience. That being said, our roadmap is currently fairly limited as the project is still in its infancy; it hasn't even been 2 weeks since the [announcement of winget]() as of writing this.
+While we think that [winget.run](https://winget.run/) is currently in a usable and complete state, we have many features planned going forward in the hopes of further impoving user experience. That being said, our roadmap is currently fairly limited as the project is still in its infancy; it hasn't even been 2 weeks since the [announcement of winget](https://devblogs.microsoft.com/commandline/windows-package-manager-preview/) as of writing this.
 
 #### Completed
 - Basic usable API.
 - Basic usable website.
-- Automatically importing new packages from Microsoft's [winget repo]().
+- Automatically importing new packages from Microsoft's [winget repo](https://github.com/microsoft/winget-pkgs).
 - CI/CD.
 - Hosting and deployments.
 
@@ -78,7 +83,7 @@ While we think that [winget.run]() is currently in a usable and complete state, 
 - Blue/green deployments. (devops)
 - Canary deployments. (devops)
 
-We will work on improving the roadmap down the line as well as solidifying a release schedule. Community requests are, of course, welcome. If you want to report an issue, request a feature, or even have a question, don't be afraid to [open a ticket]()!
+We will work on improving the roadmap down the line as well as solidifying a release schedule. Community requests are, of course, welcome. If you want to report an issue, request a feature, or even have a question, don't be afraid to [open a ticket](https://github.com/winget-run/wingetdotrun/issues/new)!
 
 ## Contributing
 Issues and pull requests are welcome. We don't have a contribution guide as of yet but here are some pointers that we'd like to see followed as much as possible:
@@ -97,7 +102,7 @@ Alongside the contribution guide, we're also currently taking measures in order 
 Additional guides, such as setting up a development environment, may be provided in our other repos (api/web) with more sepcific information for those parts of the project. For more in-depth information and queries, please join our [Discord]() server and talk to one of us.
 
 ## Support us
-If you don't know programming and would still like to support the project, please [consider donating]()! Servers aren't free, far from it, and at the time of writing, we're running at a loss. Any amount is highly appreciated and will allow us to continue supporting and improving [winget.run]() into the future.
+If you don't know programming and would still like to support the project, please [consider donating](https://ko-fi.com/wingetdotrun)! Servers aren't free, far from it, and at the time of writing, we're running at a loss. Any amount is highly appreciated and will allow us to continue supporting and improving [winget.run](https://winget.run/) into the future.
 
 ## Authors
 - Lukasz Niezabitowski
