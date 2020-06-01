@@ -1,21 +1,20 @@
-<p align="center">
+<div align="center">
   <a href="https://winget.run/">
     <img src="https://cdn.discordapp.com/attachments/697810943714918430/716269042414911558/wingetdotrun_blue_logo.png" alt="winget.run logo">
   </a>
 
 A modern web-app and API for viewing, finding, and easily installing [winget](https://github.com/microsoft/winget-cli) packages.
 
-[![](https://img.shields.io/website/https/winget.run?style=flat-square)]()
-[![](https://img.shields.io/github/v/release/winget-run/web?style=flat-square)]()
-[![](https://img.shields.io/github/workflow/status/winget-run/web/CI/CD/master?style=flat-square)]()
-[![](https://img.shields.io/github/issues/winget-run/web?style=flat-square)]()
-[![](https://img.shields.io/github/issues-pr/winget-run/web?style=flat-square)]()
+[![](https://img.shields.io/website/https/winget.run?style=flat-square)](https://winget.run/)
+[![](https://img.shields.io/github/v/release/winget-run/web?style=flat-square)](https://github.com/winget-run/web/releases)
+[![](https://img.shields.io/github/workflow/status/winget-run/web/ci-cd/master?style=flat-square)](https://github.com/winget-run/web/actions)
+[![](https://img.shields.io/github/issues/winget-run/web?style=flat-square)](https://github.com/winget-run/web/issues)
+[![](https://img.shields.io/github/issues-pr/winget-run/web?style=flat-square)](https://github.com/winget-run/web/pulls)
 [![](https://img.shields.io/github/license/winget-run/web?style=flat-square)]()
-[![]()]()
 
 :star: We appreciate your star, it helps!
 
-</p>
+</div>
 
 ## Contents
 
@@ -61,7 +60,7 @@ As we are still early in development, our API has not yet been made public and i
 
 ## Community
 
-You can contact us on [Twitter](https://twitter.com/wingetdotrun) and through [Ko-fi](https://ko-fi.com/wingetdotrun)
+You can contact us on [Twitter](https://twitter.com/wingetdotrun) and through [Ko-fi](https://ko-fi.com/wingetdotrun).
 
 We'll make our best efforts to post any updates and interact with the community on both platforms so if you're on any one of those then you're set.
 
@@ -112,7 +111,7 @@ Alongside the contribution guide, we're also currently taking measures in order 
 - All issues are currently listed as TODOs in the code, those will be converted to GitHub issues shortly.
 - Issue templates will be making an appearance soon™.
 
-Additional guides, such as setting up a development environment, may be provided in our other repos (api/web) with more sepcific information for those parts of the project. For more in-depth information and queries, please contact us on twitter.
+Additional guides, such as setting up a development environment, may be provided in our other repos (api/web) with more sepcific information for those parts of the project. For more in-depth information and queries, please contact us on [Twitter](https://twitter.com/wingetdotrun).
 
 ## Support us
 
