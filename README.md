@@ -75,6 +75,8 @@ While we think that [winget.run](https://winget.run/) is currently in a usable a
 - Automatically importing new packages from Microsoft's [winget repo](https://github.com/microsoft/winget-pkgs).
 - CI/CD.
 - Hosting and deployments.
+- Public API.
+- Package importer rewrite.
 
 #### Current
 
@@ -85,8 +87,6 @@ While we think that [winget.run](https://winget.run/) is currently in a usable a
 
 #### Future features
 
-- Public API.
-- Package importer rewrite.
 - Database migrations.
 - Observability. (devops)
 - Blue/green deployments. (devops)
