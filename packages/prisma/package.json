@@ -1,0 +1,14 @@
+{
+	"name": "@wingetdotrun/prisma",
+	"type": "module",
+	"devDependencies": {
+		"@types/node": "^18.15.3",
+		"@wingetdotrun/tsconfig": "workspace:*",
+		"prisma": "^4.11.0",
+		"zod-prisma": "^0.5.4"
+	},
+	"dependencies": {
+		"@prisma/client": "^4.11.0",
+		"zod": "^3.21.4"
+	}
+}

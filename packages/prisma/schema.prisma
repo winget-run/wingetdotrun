@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider      = "zod-prisma"
+  modelCase     = "camelCase"
+  relationModel = false
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Package {
+  id String @id @default(uuid())
+
+  wingetId String @unique
+
+  name        String
+  description String
+  homepage    String
+  license     String
+  licenseUrl  String
+
+  featured Boolean
+
+  publisher   Publisher @relation(fields: [publisherId], references: [id])
+  publisherId String
+
+  Version Version[]
+  Stat    Stat[]
+  Tag     PackageTag[]
+}
+
+model Version {
+  id String @id @default(uuid())
+
+  name String
+
+  package   Package @relation(fields: [packageId], references: [id])
+  packageId String
+
+  @@unique([name, packageId])
+}
+
+model Publisher {
+  id String @id @default(uuid())
+
+  name String @unique
+
+  Package Package[]
+}
+
+model PackageTag {
+  package   Package @relation(fields: [packageId], references: [id])
+  packageId String
+
+  tag   Tag    @relation(fields: [tagId], references: [id])
+  tagId String
+
+  @@id([packageId, tagId])
+}
+
+model Tag {
+  id String @id @default(uuid())
+
+  name String @unique
+
+  PackageTag PackageTag[]
+}
+
+model Stat {
+  id String @id @default(uuid())
+
+  date DateTime @default(now()) @db.Timestamp()
+
+  package   Package @relation(fields: [packageId], references: [id])
+  packageId String
+}

@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1",
+    "prettier-plugin-svelte": "^2.7.0",
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@7.15.0"
+}

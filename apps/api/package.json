@@ -1,0 +1,19 @@
+{
+	"name": "@wingetdotrun/api",
+	"type": "module",
+	"scripts": {
+		"dev": "node --experimental-specifier-resolution=node --loader ts-node/esm index.ts"
+	},
+	"devDependencies": {
+		"@wingetdotrun/trpc": "workspace:*",
+		"@wingetdotrun/tsconfig": "workspace:*",
+		"ts-node": "^10.9.1"
+	},
+	"dependencies": {
+		"@fastify/cors": "^8.2.1",
+		"@trpc/server": "^10.16.0",
+		"fastify": "^4.14.1",
+		"pino": "^8.11.0",
+		"zod": "^3.21.4"
+	}
+}

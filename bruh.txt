@@ -1,0 +1,17 @@
+apps/
+  web
+  - sveltekit
+  - zod
+  - trpc
+  - svelte-query
+  - trpc-svelte-query
+
+  api
+  - ts
+  - fastify
+  - prisma
+  - trpc
+
+packages/
+  trpc
+  prisma

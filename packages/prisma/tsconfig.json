@@ -1,0 +1,3 @@
+{
+	"extends": "@wingetdotrun/tsconfig/base.json"
+}

@@ -1,0 +1,13 @@
+{
+	"name": "@wingetdotrun/trpc",
+	"type": "module",
+	"devDependencies": {
+		"@wingetdotrun/prisma": "workspace:*",
+		"@wingetdotrun/tsconfig": "workspace:*"
+	},
+	"dependencies": {
+		"@trpc/server": "^10.16.0",
+		"superjson": "^1.12.2",
+		"zod": "^3.21.4"
+	}
+}
