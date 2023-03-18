@@ -3,6 +3,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+		"dev:api": "turbo run dev --parallel --include-dependencies --filter=@wingetdotrun/api...",
+		"dev:web": "turbo run dev --parallel --include-dependencies --filter=@wingetdotrun/web...",
     "lint": "turbo run lint",
     "format": "prettier --write ."
   },

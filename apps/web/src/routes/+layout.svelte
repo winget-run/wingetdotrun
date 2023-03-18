@@ -1,13 +1,25 @@
 <script lang="ts">
-	import "../app.css";
+	import { search } from "$lib/stores/search";
 	import { trpc } from "$lib/trpc/client";
 	import { QueryClientProvider } from "@tanstack/svelte-query";
-	import type { LayoutData, LayoutServerData } from "./$types";
+	import { shortcut } from "svaria";
+	import "../app.css";
+	import type { LayoutServerData } from "./$types";
 
 	export let data: LayoutServerData;
 
 	const queryClient = trpc.hydrateQueryClient(data.trpc);
 </script>
+
+<svelte:body
+	use:shortcut={[
+		{
+			key: "k",
+			ctrlKey: true,
+			callback: () => search.setVisibility(true),
+		},
+	]}
+/>
 
 <QueryClientProvider client={queryClient}>
 	<slot />
