@@ -29,9 +29,9 @@ model Package {
   publisher   Publisher @relation(fields: [publisherId], references: [id])
   publisherId String
 
-  Version Version[]
-  Stat    Stat[]
-  Tag     PackageTag[]
+  version Version[]
+  stat    Stat[]
+  tag     PackageTag[]
 }
 
 model Version {
@@ -50,7 +50,7 @@ model Publisher {
 
   name String @unique
 
-  Package Package[]
+  package Package[]
 }
 
 model PackageTag {
@@ -68,7 +68,7 @@ model Tag {
 
   name String @unique
 
-  PackageTag PackageTag[]
+  packageTag PackageTag[]
 }
 
 model Stat {
