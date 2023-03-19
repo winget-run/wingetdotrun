@@ -12,6 +12,7 @@
 	import clsx from "clsx";
 	import type z from "zod";
 	import type { packageModel } from "@wingetdotrun/prisma/zod";
+	import { tippy } from "$lib/actions";
 
 	export let pack: z.infer<typeof packageModel>;
 	export let highlights: any;
@@ -63,10 +64,15 @@
 			</a>
 		</div>
 		<button
+			use:tippy={{
+				content: selected
+					? "Removes this package from list of selected packages"
+					: "Adds this package to list of selected packages",
+				hideOnClick: false,
+				delay: 500,
+				placement: "top",
+			}}
 			on:click={addOrRemove}
-			title={selected
-				? "Adds this package to list of selected packages"
-				: "Removes this package from list of selected packages"}
 			class={clsx(
 				"rounded-full w-8 h-8 flex items-center justify-center focus:outline-none transform transition bg-primary",
 				selected ? "text-card rotate-[135deg]" : "bg-opacity-10 text-primary",

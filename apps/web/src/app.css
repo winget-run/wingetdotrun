@@ -6,3 +6,30 @@
 body {
 	@apply bg-background text-body overflow-x-hidden;
 }
+
+[data-tippy-root] .tippy-box,
+[data-tippy-root] .tippy-backdrop {
+	@apply bg-background shadow-lg text-center;
+}
+
+.tippy-box[data-placement^="top"] > .tippy-arrow::before {
+	@apply border-t-background;
+}
+.tippy-box[data-placement^="bottom"] > .tippy-arrow::before {
+	@apply border-b-background;
+}
+.tippy-box[data-placement^="left"] > .tippy-arrow::before {
+	@apply border-l-background;
+}
+.tippy-box[data-placement^="right"] > .tippy-arrow::before {
+	@apply border-r-background;
+}
+
+.tippy-box[data-theme~="transparent"] {
+	padding: 0 !important;
+	background: none !important;
+	max-width: none !important;
+}
+.tippy-box[data-theme~="transparent"] .tippy-content {
+	padding: 0 !important;
+}

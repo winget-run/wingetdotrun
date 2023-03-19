@@ -14,10 +14,10 @@
 
 	<div class="container px-5 mx-auto relative">
 		<span
-			class="-z-1 absolute h-[64rem] w-[64rem] bg-gradient-radial from-primary top-1/2 right-1/3 transform -translate-y-1/2 opacity-50 mix-blend-hard-light"
+			class="-z-10 absolute h-[64rem] w-[64rem] bg-gradient-radial from-primary top-1/2 right-1/3 transform -translate-y-1/2 opacity-50 mix-blend-hard-light"
 		/>
 		<span
-			class="-z-1 absolute h-[64rem] w-[64rem] bg-gradient-radial from-secondary top-1/2 left-1/3 transform -translate-y-1/2 opacity-50  mix-blend-hard-light"
+			class="-z-10 absolute h-[64rem] w-[64rem] bg-gradient-radial from-secondary top-1/2 left-1/3 transform -translate-y-1/2 opacity-50  mix-blend-hard-light"
 		/>
 
 		<svg

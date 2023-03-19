@@ -53,6 +53,7 @@ importers:
       svaria: ^0.0.12
       svelte: ^3.54.0
       svelte-check: ^3.0.1
+      svelte-tiny-virtual-list: ^2.0.5
       tailwindcss: ^3.2.7
       tippy.js: ^6.3.7
       trpc-svelte-query: ^0.0.2
@@ -85,6 +86,7 @@ importers:
       svaria: 0.0.12_vite@4.2.0
       svelte: 3.57.0
       svelte-check: 3.1.4_sd5d5bwhwct4qrvp7ra4wv5wou
+      svelte-tiny-virtual-list: 2.0.5
       tailwindcss: 3.2.7_postcss@8.4.21
       tslib: 2.5.0
       typescript: 4.9.5
@@ -2093,6 +2095,10 @@ packages:
       strip-indent: 3.0.0
       svelte: 3.57.0
       typescript: 4.9.5
+    dev: true
+
+  /svelte-tiny-virtual-list/2.0.5:
+    resolution: {integrity: sha512-xg9ckb8UeeIme4/5qlwCrl2QNmUZ8SCQYZn3Ji83cUsoASqRNy3KWjpmNmzYvPDqCHSZjruBBsoB7t5hwuzw5g==}
     dev: true
 
   /svelte/3.57.0:
