@@ -6,7 +6,7 @@
 	export let outlined = false;
 
 	let baseButtonClasses =
-		"inline-flex items-center justify-center rounded-lg border focus:outline-none transition transform font-semibold truncate";
+		"inline-flex items-center justify-center gap-2 rounded-lg border focus:outline-none transition transform font-semibold truncate";
 
 	$: themeClasses = outlined
 		? "border-primary text-primary hover:(text-primary-60 border-primary-60 bg-primary-20) focus-visible:(text-primary-60 border-primary-60 bg-primary-20)"

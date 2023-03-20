@@ -1,25 +1,26 @@
 <script lang="ts">
 	import { tippy } from "$lib/actions";
-	import { downloads } from "$lib/stores/packages";
-	import type { IPackage } from "$lib/types/package";
+	import { downloads } from "$lib/stores/downloads";
 	import VirtualList from "svelte-tiny-virtual-list";
-	import { get } from "svelte/store";
-	import IconPen from "~icons/lucide/pen";
-	import IconPlus from "~icons/lucide/plus";
 	import IconPackage from "~icons/lucide/package";
-	import Clipboard from "./clipboard.svelte";
+	import IconPen from "~icons/lucide/edit-2";
+	import IconPlus from "~icons/lucide/plus";
+	import ClipboardButton from "../button/clipboard_button.svelte";
 
-	export let pack: IPackage;
-	$: selected = $downloads.find((x) => x.package.Id === pack.Id);
+	export let pack: {
+		id: string;
+		name: string;
+		versions: string[];
+	};
+	$: selected = $downloads.items.find((x) => x.id === pack.id);
+
+	$: [publisher, ...name] = pack.id.split(".");
 
 	function addToSelected(version: string) {
 		if (selected) {
-			let newDownloads = get(downloads);
-			const index = newDownloads.findIndex((x) => x.package.Id === pack.Id);
-			newDownloads[index] = { ...newDownloads[index], version };
-			downloads.set(newDownloads);
+			downloads.changeVersion(pack.id, version);
 		} else {
-			downloads.update((x) => [...x, { package: pack, version }]);
+			downloads.add({ id: pack.id, name: pack.name, version });
 		}
 	}
 </script>
@@ -27,8 +28,8 @@
 <div class="list {$$props.class}">
 	<VirtualList
 		width="100%"
-		height={Math.min(32 * 6, Math.max(2, pack.Versions.length) * 32)}
-		itemCount={pack.Versions.length}
+		height={Math.min(32 * 6, Math.max(2, pack.versions.length) * 32)}
+		itemCount={pack.versions.length}
 		itemSize={32}
 	>
 		<div
@@ -36,21 +37,28 @@
 			slot="item"
 			let:index
 			let:style
-			class="flex items-center justify-between px-2.5 pr-1.5 py-1 text-body dark:text-body-dark hover:bg-grey-10 dark:hover:bg-dark-600 rounded"
+			class="flex items-center justify-between rounded px-2.5 py-1 pr-1.5 text-body hover:bg-card-hover"
 			{style}
 		>
-			<p class="truncate text-sm">{pack.Versions[index]}</p>
+			{@const version = pack.versions[index]}
+			<p class="truncate text-sm" class:text-primary={selected?.version === version}>{pack.versions[index]}</p>
 			<div class="flex items-center">
-				<button class="px-1 h-full hover:text-primary focus:outline-none" use:tippy={{ content: "Package Manifest" }}>
+				<a
+					href="https://github.com/microsoft/winget-pkgs/tree/master/manifests/{publisher.at(0)}/{publisher}/{name.join(
+						'',
+					)}/{version}"
+					class="h-full px-1 hover:text-primary focus:outline-none"
+					use:tippy={{ content: "Package Manifest" }}
+				>
 					<IconPackage width={20} height={20} />
-				</button>
+				</a>
 
-				<Clipboard download={{ package: pack, version: pack.Versions[index] }} />
+				<ClipboardButton download={{ ...pack, version }} />
 
 				<button
 					class="px-1 hover:text-primary focus:outline-none"
 					use:tippy={{ content: selected ? "Change to this version" : "Add this version" }}
-					on:click={() => addToSelected(pack.Versions[index])}
+					on:click={() => addToSelected(version)}
 				>
 					{#if selected}
 						<IconPen width={20} height={20} />
@@ -66,20 +74,22 @@
 <style>
 	.list :global(.virtual-list-wrapper) {
 		overflow-x: hidden;
+		scrollbar-color: theme("colors.card-hover") theme("colors.card");
+		scrollbar-width: thin;
 	}
 	.list :global(.virtual-list-wrapper)::-webkit-scrollbar {
 		width: 6px;
 		height: 6px;
 	}
 	.list :global(.virtual-list-wrapper)::-webkit-scrollbar-thumb {
-		background: #d4d4d4;
+		background: theme("colors.card-hover");
 		border-radius: 30px;
 	}
 	.list :global(.virtual-list-wrapper)::-webkit-scrollbar-thumb:hover {
-		background: #888888;
+		background: theme("colors.card-hover");
 	}
 	.list :global(.virtual-list-wrapper)::-webkit-scrollbar-track {
-		background: #f5f5f5;
+		background: theme("colors.card");
 		border-radius: 30px;
 	}
 </style>

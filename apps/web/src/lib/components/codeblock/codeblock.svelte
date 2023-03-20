@@ -12,23 +12,23 @@
 
 <code
 	class={clsx(
-		"relative bg-card bg-opacity-50 backdrop-blur border border-white border-opacity-10 rounded-lg p-4 flex",
-		multiline ? "items-end" : "items-center leading-normal",
+		"relative flex max-w-full rounded-lg border border-white/10 bg-card-hover bg-opacity-50 p-5 backdrop-blur gap-4 @container",
+		multiline ? "items-end" : "items-center leading-normal h-14",
 		$$props.class,
 	)}
 >
-	<span
+	<div
 		class={clsx(
-			"content before:content-['>'] before:mr-2 before:text-primary flex-1",
-			multiline ? "h-48 line-clamp-7 overflow-elipsis" : "truncate",
+			"@xl:text-lg before:mr-3 before:text-primary before:content-['>'] flex-1 w-0",
+			multiline ? "line-clamp-7 overflow-elipsis h-48" : "truncate",
 		)}
 	>
 		{code}
-	</span>
+	</div>
 	<button
 		use:tippy={{ content: $message, hideOnClick: false, delay: $copied ? 1500 : 0 }}
 		on:click={() => copyText(code)}
-		class="text-current focus:outline-none hover:text-primary"
+		class="text-current hover:text-primary focus:outline-none flex-shrink-0"
 	>
 		<IconClipboard width={22} height={22} />
 	</button>

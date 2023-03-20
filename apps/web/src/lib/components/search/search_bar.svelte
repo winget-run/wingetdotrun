@@ -14,7 +14,6 @@
 
 	let input: HTMLInputElement;
 	let content: HTMLDivElement;
-	let value: string;
 
 	let isSearching = false;
 	let moreOptionsOpen = false;
@@ -31,18 +30,16 @@
 		}, 400);
 	}
 
-	$: contentHTML = value
-		? value
-				.replace(
-					/(name|publisher|description|tags):/g,
-					"<span class='bg-primary bg-opacity-10 text-primary rounded'>$1:</span>",
-				)
-				.replace(" ", "&nbsp;")
+	$: contentHTML = $search.query
+		? $search.query.replace(
+				/(name|publisher|description|tags):/g,
+				"<span class='bg-primary bg-opacity-10 text-primary rounded'>$1:</span>",
+		  )
 		: "";
 
 	$: {
-		if (value?.length >= 2) {
-			debounce(() => performSearch(value));
+		if ($search.query && $search.query?.length >= 2) {
+			debounce(() => $search.query && performSearch($search.query));
 		} else {
 			// search.results.set(undefined);
 		}
@@ -62,7 +59,7 @@
 
 	async function performSearch(query: string) {
 		isSearching = true;
-		const { order, ...tags } = parseTags(query);
+		// const { order, ...tags } = parseTags(query);
 
 		// await $api
 		// 	.packages({
@@ -76,12 +73,12 @@
 	}
 
 	function viewAllResults() {
-		const { order, sort, ...tags } = parseTags(value);
-		const params = new URLSearchParams({
-			...tags,
-		});
-		search.setVisibility(false);
-		goto(`/search?${params.toString()}`);
+		// const { order, sort, ...tags } = parseTags(value);
+		// const params = new URLSearchParams({
+		// 	...tags,
+		// });
+		// search.setVisibility(false);
+		// goto(`/search?${params.toString()}`);
 	}
 
 	$: flyAmount = $prefersReducedMotion ? 0 : 10;
@@ -111,7 +108,7 @@
 		],
 	}}
 	class={[
-		"w-full h-16 flex items-center px-6 relative z-30 bg-card backdrop-filter backdrop-blur border border-white border-opacity-10 rounded-lg transition-colors",
+		"w-full h-16 flex items-center px-6 relative z-30 bg-card backdrop-filter backdrop-blur border border-white/10 rounded-lg transition-colors",
 		$search.visible ? "bg-opacity-80" : "bg-opacity-50",
 		$$props.class,
 	]
@@ -124,9 +121,9 @@
 			<input
 				bind:this={input}
 				class="w-full h-full text-title placeholder-sub focus:outline-none relative bg-transparent | font-medium"
-				bind:value
+				bind:value={$search.query}
 				on:focus={() => search.setVisibility(true)}
-				on:blur={() => !value && search.setVisibility(false)}
+				on:blur={() => !($search.results && $search.results.length === 0) && search.setVisibility(false)}
 				on:scroll={handleInputScroll}
 				type="search"
 				placeholder="Search 4000+ packages"

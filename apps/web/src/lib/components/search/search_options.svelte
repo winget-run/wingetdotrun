@@ -19,7 +19,7 @@
 		delay,
 	}}
 	class={clsx(
-		"bg-card bg-opacity-80 backdrop-filter backdrop-blur border border-white border-opacity-10 rounded-lg h-full w-full p-6",
+		"bg-card bg-opacity-80 backdrop-filter backdrop-blur border border-white/10 rounded-lg h-full w-full p-6",
 		$$props.class,
 	)}
 >

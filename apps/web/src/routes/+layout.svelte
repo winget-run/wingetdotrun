@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Nav from "$lib/components/nav/nav.svelte";
 	import { search } from "$lib/stores/search";
 	import { trpc } from "$lib/trpc/client";
 	import { QueryClientProvider } from "@tanstack/svelte-query";
@@ -24,5 +25,8 @@
 />
 
 <QueryClientProvider client={queryClient}>
-	<slot />
+	<Nav />
+	<main>
+		<slot />
+	</main>
 </QueryClientProvider>

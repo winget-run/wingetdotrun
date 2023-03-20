@@ -38,7 +38,7 @@
 	class={clsx(
 		"bg-card bg-opacity-50 backdrop-filter backdrop-blur rounded-lg h-full w-full border p-6",
 		$prefersReducedMotion ? "transition-opacity" : "transition-all",
-		selected ? "shadow-sm shadow-primary border-primary" : "border-white border-opacity-10",
+		selected ? "shadow-md shadow-primary/20 border-primary bg-opacity-80" : "border-white/10",
 	)}
 >
 	<div class="flex items-center">
@@ -65,11 +65,9 @@
 		</div>
 		<button
 			use:tippy={{
-				content: selected
-					? "Removes this package from list of selected packages"
-					: "Adds this package to list of selected packages",
-				hideOnClick: false,
-				delay: 500,
+				content: selected ? "Remove this package" : "Add this package",
+				delay: [1000, 0],
+				hideOnClick: "toggle",
 				placement: "top",
 			}}
 			on:click={addOrRemove}
