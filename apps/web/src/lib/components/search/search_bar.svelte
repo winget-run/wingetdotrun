@@ -2,6 +2,7 @@
 	import { goto } from "$app/navigation";
 	import { search } from "$lib/stores/search";
 	import { parseTags } from "$lib/utils/helpers";
+	import clsx from "clsx";
 	import { clickoutside, contextual, Feed, prefersReducedMotion } from "svaria";
 	import { flip } from "svelte/animate";
 	import { backOut } from "svelte/easing";
@@ -32,8 +33,8 @@
 
 	$: contentHTML = $search.query
 		? $search.query.replace(
-				/(name|publisher|description|tags):/g,
-				"<span class='bg-primary bg-opacity-10 text-primary rounded'>$1:</span>",
+				/((name|publisher|description|tags):(\w+))/g,
+				"<span class='bg-secondary/10 rounded'><span class='text-secondary'>$2</span>:$3</span>",
 		  )
 		: "";
 
@@ -84,6 +85,7 @@
 	$: flyAmount = $prefersReducedMotion ? 0 : 10;
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	use:clickoutside={() => search.setVisibility(false)}
 	use:contextual={{
@@ -107,52 +109,54 @@
 			},
 		],
 	}}
-	class={[
-		"w-full h-16 flex items-center px-6 relative z-30 bg-card backdrop-filter backdrop-blur border border-white/10 rounded-lg transition-colors",
+	class={clsx(
+		"relative z-30 flex h-16 w-full items-center rounded-lg border border-white/10 bg-card backdrop-blur backdrop-filter transition-colors",
 		$search.visible ? "bg-opacity-80" : "bg-opacity-50",
 		$$props.class,
-	]
-		.filter(Boolean)
-		.join(" ")}
+	)}
 >
-	<IconSearch width={24} height={24} class="text-primary mr-3" />
-	<div class="flex-1 relative {!$search.visible && 'pr-20'}">
-		<form class="relative" role="search" on:submit|preventDefault={viewAllResults}>
-			<input
-				bind:this={input}
-				class="w-full h-full text-title placeholder-sub focus:outline-none relative bg-transparent | font-medium"
-				bind:value={$search.query}
-				on:focus={() => search.setVisibility(true)}
-				on:blur={() => !($search.results && $search.results.length === 0) && search.setVisibility(false)}
-				on:scroll={handleInputScroll}
-				type="search"
-				placeholder="Search 4000+ packages"
-				spellcheck="false"
-				autocomplete="false"
-			/>
-			<div
-				class="w-full h-full absolute left-0 top-0 text-transparent overflow-hidden whitespace-nowrap | font-medium pointer-events-none"
-				bind:this={content}
-			>
-				{@html contentHTML}
-			</div>
-		</form>
-		{#if !$search.visible}
-			<kbd
-				class="text-xs text-subtitle font-semibold leading-none rounded px-1.5 py-1 border border-b-2 border-current pointer-events-none | absolute right-0 top-1/2 transform -translate-y-1/2"
-			>
-				CTRL+K
-			</kbd>
-		{/if}
-	</div>
+	<IconSearch width={24} height={24} class="absolute left-5 top-1/2 -translate-y-1/2 transform text-primary" />
+	<form
+		class={clsx("relative h-full w-full", !$search.visible && "pr-20")}
+		role="search"
+		on:submit|preventDefault={viewAllResults}
+	>
+		<input
+			bind:this={input}
+			class={clsx(
+				"relative h-full w-full bg-transparent font-medium text-title placeholder-body focus:outline-none pl-16",
+			)}
+			bind:value={$search.query}
+			on:focus={() => search.setVisibility(true)}
+			on:blur={() => !($search.results && $search.results.length === 0) && search.setVisibility(false)}
+			on:scroll={handleInputScroll}
+			type="search"
+			placeholder="Search 4000+ packages"
+			spellcheck="false"
+			autocomplete="false"
+		/>
+		<div
+			class="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 w-full overflow-hidden whitespace-nowrap font-medium text-transparent pl-16 align-middle"
+			bind:this={content}
+		>
+			{@html contentHTML}
+		</div>
+	</form>
 
-	<p id="search-component-label" class="sr-only">Search Results</p>
+	{#if !$search.visible}
+		<kbd
+			class="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 transform rounded border border-b-2 border-current px-1.5 py-1 text-xs font-semibold leading-none text-body"
+		>
+			CTRL+K
+		</kbd>
+	{/if}
 
 	{#if $search.visible}
+		<p id="search-component-label" class="sr-only">Search Results</p>
 		<Feed
 			feedLabelId="search-component-label"
 			isLoading={isSearching}
-			class="absolute max-h-screen w-full -bottom-2 left-0 transform translate-y-full"
+			class="absolute -bottom-2 left-0 max-h-screen w-full translate-y-full transform"
 		>
 			{#if $search.results}
 				{#each $search.results.Packages as pack, i (pack.Id)}
@@ -187,10 +191,10 @@
 							y: flyAmount,
 							easing: backOut,
 						}}
-						class="bg-white rounded-xl h-full w-full border p-5 shadow-card mb-2 text-center flex flex-col items-center"
+						class="mb-2 flex h-full w-full flex-col items-center rounded-xl border bg-white p-5 text-center shadow-card"
 					>
 						<h3 class="text-2xl font-semibold text-primary">No packages found</h3>
-						<p class="text-body text-center max-w-96 mt-2.5">
+						<p class="max-w-96 mt-2.5 text-center text-body">
 							Try searching for another term, or narrow down your search using the filters.
 						</p>
 					</div>
@@ -204,7 +208,7 @@
 								delay: $prefersReducedMotion ? 0 : $search.results.Packages.length * 50 + 50,
 								easing: backOut,
 							}}
-							class="w-full h-11 px-4 inline-flex items-center justify-center rounded-lg focus:outline-none | bg-white hover:bg-primary-10 transition-colors text-primary font-semibold text-lg shadow-card"
+							class="| hover:bg-primary-10 inline-flex h-11 w-full items-center justify-center rounded-lg bg-white px-4 text-lg font-semibold text-primary shadow-card transition-colors focus:outline-none"
 						>
 							{moreOptionsOpen ? "Less options" : "More options"}
 							<IconAngleDown class="ms-3 transform {moreOptionsOpen && 'rotate-180'}" width={24} height={24} />
@@ -218,7 +222,7 @@
 								delay: $prefersReducedMotion ? 0 : $search.results.Packages.length * 50 + 100,
 								easing: backOut,
 							}}
-							class="w-full h-11 px-4 inline-flex items-center justify-center rounded-lg focus:outline-none | bg-primary hover:bg-primary-60 transition-colors text-white font-semibold text-lg shadow-card"
+							class="| hover:bg-primary-60 inline-flex h-11 w-full items-center justify-center rounded-lg bg-primary px-4 text-lg font-semibold text-white shadow-card transition-colors focus:outline-none"
 						>
 							{$search.results.total === 1 ? "View result" : `View all ${$search.results.total} results`}
 							<IconArrowRight class="ms-3" width={24} height={24} />

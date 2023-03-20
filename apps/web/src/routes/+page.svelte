@@ -7,6 +7,33 @@
 	const svg = `"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(213 219 249 / 0.08)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e"`;
 </script>
 
+<svelte:head>
+	<title>wingetdotrun | Finding winget packages made simple.</title>
+	<meta
+		name="description"
+		content="Searching, discovering and installing winget packages made effortless without any third-party programs"
+	/>
+	<meta
+		name="twitter:description"
+		content="Searching, discovering and installing winget packages made effortless without any third-party programs"
+	/>
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"url": "https://winget.run/",
+			"potentialAction": {
+				"@type": "SearchAction",
+				"target": {
+					"@type": "EntryPoint",
+					"urlTemplate": "https://winget.run/search?query={search_term_string}&utm_source=schemaSearch"
+				},
+				"query-input": "required name=search_term_string"
+			}
+		}
+	</script>
+</svelte:head>
+
 <header class="relative pt-56 pb-20">
 	<div
 		class="absolute inset-0 h-[150%] w-full bg-bottom -z-1 bg-fixed"
@@ -90,7 +117,11 @@
 
 <div class="container px-5 mx-auto">
 	<h2 id="popular-packages-title" class="text-2xl text-title font-bold mb-8">Most popular packages this month</h2>
-	<Feed class="grid grid-cols-4 gap-8" feedLabelId="popular-packages-title" isLoading={false}>
+	<Feed
+		class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+		feedLabelId="popular-packages-title"
+		isLoading={false}
+	>
 		{#each Array(8) as _, i}
 			<Package
 				highlights={null}
