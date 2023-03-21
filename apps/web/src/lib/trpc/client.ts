@@ -7,7 +7,7 @@ import superjson from "superjson";
 export const trpc = createTRPCSvelte<Router>({
 	links: [
 		ssrLink(httpBatchLink)({
-			url: "######",
+			url: "http://localhost:3000/trpc",
 		}),
 	],
 	transformer: superjson,

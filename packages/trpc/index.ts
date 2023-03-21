@@ -1,21 +1,20 @@
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
-import { z } from "zod";
 import { packageRouter } from "./routes/packages";
 import { publisherRouter } from "./routes/publishers";
-import { searchRouter } from "./routes/search";
 import { statRouter } from "./routes/stats";
 import { tagRouter } from "./routes/tags";
+import { utilRouter } from "./routes/util";
 import { versionRouter } from "./routes/versions";
-import { publicProcedure, router as trpcRouter } from "./trpc";
+import { router as trpcRouter } from "./trpc";
 
 export { createContext } from "./context";
 
 export const router = trpcRouter({
 	packages: packageRouter,
 	publishers: publisherRouter,
-	search: searchRouter,
 	stats: statRouter,
 	tags: tagRouter,
+	util: utilRouter,
 	versions: versionRouter,
 });
 

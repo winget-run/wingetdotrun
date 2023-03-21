@@ -1,7 +1,10 @@
+import { trpc } from "$lib/trpc/client";
 import type { PageServerLoad } from "./$types";
 
 export const load = (async (event) => {
 	const { params } = event;
+
+	await trpc.util.package.ssr({ id: "79fdb5dd-92e4-449c-86df-260cf388af03" }, event);
 
 	// const pkg = await trpc.packages.find.ssr({ id: `${params.publisher}.${params.package}` }, event);
 	// const stats = await trpc.stats.find.ssr({ id: `${params.publisher}.${params.package}` }, event);

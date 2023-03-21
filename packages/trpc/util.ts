@@ -9,7 +9,7 @@ const MIN_PER_PAGE = 1;
 const MAX_PER_PAGE = 50;
 
 // helpers
-const createGenericListFilters = <F extends z.AnyZodObject>(filters: F) => {
+export const createGenericListFilters = <F extends z.AnyZodObject>(filters: F) => {
 	return z
 		.object({
 			page: z.number().min(MIN_PAGE).optional().default(DEFAULT_PAGE),
@@ -18,7 +18,7 @@ const createGenericListFilters = <F extends z.AnyZodObject>(filters: F) => {
 		.merge(filters);
 };
 
-const createGenericOutputSchema = <D extends z.ZodTypeAny, M extends z.AnyZodObject>(data: D, meta: M) => {
+export const createGenericOutputSchema = <D extends z.ZodTypeAny, M extends z.AnyZodObject>(data: D, meta: M) => {
 	return z.object({ data }).merge(meta);
 };
 
