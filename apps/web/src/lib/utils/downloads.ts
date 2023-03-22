@@ -3,7 +3,7 @@ import type { Download, DownloadOptions } from "$lib/stores/downloads";
 export const DOWNLOAD_TYPES = ["ps1", "bat", "json"] as const;
 export type DownloadType = (typeof DOWNLOAD_TYPES)[number];
 
-export const mapDownloadArgs = (args: DownloadOptions, version?: string) => {
+export const mapDownloadArgs = (args: DownloadOptions, version = "latest") => {
 	let output: string[] = [];
 
 	if (version && version !== "latest") output.push(`-v ${version}`);
@@ -26,7 +26,8 @@ export const mapDownloadsToCommands = (
 		case "ps1":
 		case "bat":
 			return downloads
-				.map((x) => `winget install -e --id ${x.id} ${mapDownloadArgs(options, x.version).join(" ")}`)
-				.join(format === "ps1" ? "; " : " & ");
+				.map((x) => `winget install -e --id ${x.id} ${mapDownloadArgs(options, x.version).join(" ")}`.trim())
+				.join(format === "ps1" ? "; " : " & ")
+				.trim();
 	}
 };

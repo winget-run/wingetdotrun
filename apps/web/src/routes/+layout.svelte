@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Footer from "$lib/components/footer/footer.svelte";
 	import Nav from "$lib/components/nav/nav.svelte";
 	import { search } from "$lib/stores/search";
 	import { trpc } from "$lib/trpc/client";
@@ -25,8 +26,11 @@
 />
 
 <QueryClientProvider client={queryClient}>
-	<Nav />
-	<main>
-		<slot />
-	</main>
+	<div class="flex flex-col min-h-screen">
+		<Nav />
+		<main class="flex-1">
+			<slot />
+		</main>
+		<Footer />
+	</div>
 </QueryClientProvider>

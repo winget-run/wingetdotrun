@@ -28,7 +28,6 @@ export const parseTags = (queryString: string): TagObject => {
 	return queryObj;
 };
 
-// TODO: change stat type
 /**
  * Pads the date of stats to the current date
  * @param stats stats to pad
@@ -36,16 +35,16 @@ export const parseTags = (queryString: string): TagObject => {
  * @param sampleAmount amount of samples from period length
  * @returns padded stats
  */
-export const padDate = (stats: { period: string; value: number }[], period: number, sampleAmount: number) => {
+export const padDate = (stats: { date: Date; views: number }[], period: number, sampleAmount: number) => {
 	const currentDateInMs = Date.now() - period;
 	const paddedStats = [...new Array(sampleAmount).keys()].reverse().map((e) => {
 		const time = new Date(currentDateInMs - e * period);
 		time.setUTCHours(0, 0, 0, 0);
 
 		return (
-			stats.find((f) => f.period === time.toISOString()) ?? {
-				period: time.toISOString(),
-				value: 0,
+			stats.find((f) => f.date === time) ?? {
+				date: time,
+				views: 0,
 			}
 		);
 	});

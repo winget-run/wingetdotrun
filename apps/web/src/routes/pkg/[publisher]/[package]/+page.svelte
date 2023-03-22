@@ -10,28 +10,28 @@
 	import { padDate } from "$lib/utils/helpers";
 	import clsx from "clsx";
 	import IconCalendar from "~icons/lucide/calendar";
-	import IconScale from "~icons/lucide/scale";
 	import IconGlobe from "~icons/lucide/globe";
 	import IconPlus from "~icons/lucide/plus";
+	import IconScale from "~icons/lucide/scale";
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
-	$: ({ publisher, pack, stats } = data);
 
+	let selectedDateIdx: number | null = null;
 	let graphWidth: number;
 
-	$: selected = $downloads.items.find((x) => x.id === pack.id);
+	$: ({ publisher, pack } = data);
+	$: dates = padDate(pack.views, 1000 * 60 * 60 * 24, 7);
+	$: selectedDate = selectedDateIdx !== null ? dates[selectedDateIdx] : undefined;
+	$: isSelected = $downloads.items.find((x) => x.id === pack.id);
+
 	function addOrRemove() {
-		if (selected) {
+		if (isSelected) {
 			downloads.remove(pack.id);
 		} else {
 			downloads.add({ id: pack.id, name: pack.name, version: pack.versions[0] });
 		}
 	}
-
-	$: dates = padDate(stats, 1000 * 60 * 60 * 24, 7);
-	let selectedDateIdx: number | null = null;
-	$: selectedDate = selectedDateIdx !== null ? dates[selectedDateIdx] : undefined;
 </script>
 
 <svelte:head>
@@ -86,9 +86,9 @@
 <div class="container mx-auto w-full px-5">
 	<div class="flex flex-col-reverse gap-8 lg:flex-row xl:gap-16">
 		<div class="w-full flex-shrink-0 lg:max-w-sm">
-			<Button on:click={addOrRemove} class="mb-5 w-full" outlined={!selected} let:iconSize>
-				<IconPlus class="transform {selected && 'rotate-45'}" width={iconSize} height={iconSize} />
-				{selected ? "Remove this package" : "Add this package"}
+			<Button on:click={addOrRemove} class="mb-5 w-full" outlined={!isSelected} let:iconSize>
+				<IconPlus class="transform {isSelected && 'rotate-45'}" width={iconSize} height={iconSize} />
+				{isSelected ? "Remove this package" : "Add this package"}
 			</Button>
 
 			<div
@@ -111,16 +111,15 @@
 					</section>
 				{/if}
 				<section bind:offsetWidth={graphWidth} class="pt-5">
-					{#if selectedDateIdx !== null}
-						{@const views = dates[selectedDateIdx].value}
+					{#if selectedDate}
 						<h2 class="px-6 text-xl font-semibold leading-tight text-title">
-							{views !== 1 ? `${views} views` : `1 view`}
+							{selectedDate.views !== 1 ? `${selectedDate.views} views` : `1 view`}
 						</h2>
 						<h3 class="px-6 text-sm font-medium italic text-subtitle">
-							{new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(new Date(dates[selectedDateIdx].period))}
+							{new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(selectedDate.date)}
 						</h3>
 					{:else}
-						{@const views = dates.reduce((a, c) => a + c.value, 0)}
+						{@const views = dates.reduce((a, c) => a + c.views, 0)}
 						<h2 class="px-6 text-xl font-semibold leading-tight text-title">
 							{views !== 1 ? `${views} views` : `1 view`}
 						</h2>
@@ -129,7 +128,7 @@
 
 					<Graph
 						class="w-full text-primary"
-						stats={dates}
+						stats={dates.map((x) => x.views)}
 						bind:selected={selectedDateIdx}
 						verticalPadding={20}
 						height={120}

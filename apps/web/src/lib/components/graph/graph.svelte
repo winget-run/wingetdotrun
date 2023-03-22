@@ -6,19 +6,19 @@
 	export let width = 300;
 	export let verticalPadding = 0;
 
-	export let stats: { period: string; value: number }[];
+	export let stats: number[];
 	export let selected: number | null = null;
 
-	$: max = stats.reduce((a, c) => (c.value > a ? c.value : a), 0);
-	$: min = stats.reduce((a, c) => (c.value < a ? c.value : a), 0);
+	$: max = stats.reduce((a, c) => (c > a ? c : a), 0);
+	$: min = stats.reduce((a, c) => (c < a ? c : a), 0);
 	$: interval = width / (stats.length - 1);
 
 	$: points = stats.map((e, i) => ({
 		x: interval * i,
 		y:
-			e.value === 0
+			e === 0
 				? height
-				: height - (((e.value - min) * 100) / (max - min)) * ((height - verticalPadding * 2) / 100) - verticalPadding,
+				: height - (((e - min) * 100) / (max - min)) * ((height - verticalPadding * 2) / 100) - verticalPadding,
 	}));
 
 	$: curvePoints = points
