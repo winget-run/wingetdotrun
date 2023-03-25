@@ -1,9 +1,12 @@
+import type { DownloadFormat } from "$lib/utils/downloads";
 import { writable } from "svelte/store";
 
 export type Download = {
 	id: string;
 	name: string;
-	version: string;
+	version?: string;
+	logo?: string;
+	homepage?: string;
 };
 
 export type DownloadOptions = {
@@ -16,6 +19,7 @@ export type DownloadOptions = {
 export type DownloadStoreParams = {
 	items: Download[];
 	options: DownloadOptions;
+	format?: DownloadFormat;
 };
 
 export const downloads = (() => {
@@ -27,6 +31,7 @@ export const downloads = (() => {
 			acceptPackageAgreements: undefined,
 			acceptSourceAgreements: undefined,
 		},
+		format: "ps1",
 	});
 
 	// Downloads
@@ -38,3 +43,5 @@ export const downloads = (() => {
 
 	return { subscribe, set, update, add, changeVersion, remove, clear };
 })();
+
+export const downloadModalOpen = writable(false);

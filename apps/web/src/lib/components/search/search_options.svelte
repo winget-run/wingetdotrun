@@ -39,11 +39,7 @@
 		</tr>
 		<tr>
 			<td class="pr-3 align-top font-mono font-semibold text-title"> tags: </td>
-			<td class="align-top">
-				Searches for packages with a specific tags
-				<br />
-				(comma separated).
-			</td>
+			<td class="align-top"> Searches for packages with a specific tag </td>
 		</tr>
 	</table>
 </div>

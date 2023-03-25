@@ -1,7 +1,7 @@
 import type { Download, DownloadOptions } from "$lib/stores/downloads";
 
-export const DOWNLOAD_TYPES = ["ps1", "bat", "json"] as const;
-export type DownloadType = (typeof DOWNLOAD_TYPES)[number];
+export const DOWNLOAD_FORMATS = ["ps1", "bat", "json"] as const;
+export type DownloadFormat = (typeof DOWNLOAD_FORMATS)[number];
 
 export const mapDownloadArgs = (args: DownloadOptions, version = "latest") => {
 	let output: string[] = [];
@@ -18,7 +18,7 @@ export const mapDownloadArgs = (args: DownloadOptions, version = "latest") => {
 export const mapDownloadsToCommands = (
 	downloads: { id: string; version?: string }[],
 	options: DownloadOptions = {},
-	format: DownloadType = "ps1",
+	format: DownloadFormat = "ps1",
 ) => {
 	switch (format) {
 		case "json":

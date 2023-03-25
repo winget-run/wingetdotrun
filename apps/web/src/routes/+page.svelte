@@ -4,6 +4,8 @@
 	import { search } from "$lib/stores/search";
 	import { Feed } from "svaria";
 
+	export let data;
+
 	const svg = `"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(213 219 249 / 0.08)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e"`;
 </script>
 
@@ -122,27 +124,16 @@
 		feedLabelId="popular-packages-title"
 		isLoading={false}
 	>
-		{#each Array(8) as _, i}
+		{#each data.packages as pack, i}
 			<Package
 				highlights={null}
 				svariaProps={{
 					index: i,
 					itemCount: 8,
-					labelId: `popular-${"Microsoft.VisualStudioCode"}`,
-					descriptionId: `popular-${"Microsoft.VisualStudioCode"}-desc`,
+					labelId: `popular-${pack.id}`,
+					descriptionId: `popular-${pack.id}-desc`,
 				}}
-				pack={{
-					id: "Microsoft.VisualStudioCode",
-					wingetId: "Microsoft.VisualStudioCode",
-					name: "Visual Studio Code",
-					description:
-						"Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications. Visual Studio Code is free and available on your favorite platform - Linux, macOS, and Windows.",
-					homepage: "https://code.visualstudio.com/",
-					license: "MIT",
-					licenseUrl: "",
-					featured: true,
-					publisherId: "Microsoft",
-				}}
+				{pack}
 			/>
 		{/each}
 	</Feed>

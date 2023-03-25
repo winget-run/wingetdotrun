@@ -13,23 +13,23 @@
 	import type z from "zod";
 	import type { packageModel } from "@wingetdotrun/prisma/zod";
 	import { tippy } from "$lib/actions";
+	import { downloads } from "$lib/stores/downloads";
+	import IconStar from "~icons/lucide/star";
 
 	export let pack: z.infer<typeof packageModel>;
 	export let highlights: any;
 	// export let highlights: ISearchFilters | undefined = undefined;
 	export let svariaProps: FeedItemProps;
 
-	// $: selected = $downloads.find((x) => x.package.Id === pack.Id);
-	let selected = false;
+	$: selected = $downloads.items.find((x) => x.id === pack.id);
 	$: [publisher, ...name] = pack.id.split(".");
 
 	function addOrRemove() {
-		selected = !selected;
-		// if (selected) {
-		// 	downloads.update((x) => x.filter((y) => y.package.Id !== selected?.package.Id));
-		// } else {
-		// 	downloads.update((x) => [...x, { package: pack, version: "latest" }]);
-		// }
+		if (selected) {
+			downloads.remove(pack.id);
+		} else {
+			downloads.add({ id: pack.id, name: pack.name, logo: pack.logo, homepage: pack.homepage });
+		}
 	}
 </script>
 
@@ -41,8 +41,17 @@
 		selected ? "shadow-md shadow-primary/20 border-primary bg-opacity-80" : "border-white/10",
 	)}
 >
+	{#if pack.featured}
+		<div
+			class="absolute top-0 left-3 -translate-y-1/2 bg-primary text-card rounded-full px-2 h-5 text-xs font-semibold flex items-center gap-1"
+		>
+			<IconStar width={12} height={12} />
+			Featured
+		</div>
+	{/if}
+
 	<div class="flex items-center">
-		<PackageIcon logo={undefined} homepage={pack.homepage} size={32} />
+		<PackageIcon logo={pack.logo} homepage={pack.homepage} size={32} />
 		<div class="flex-1 px-2.5">
 			<h2 id={svariaProps.labelId} class="font-semibold text-title text-lg line-clamp-1 leading-tight break-all">
 				<a href="/pkg/{publisher}/{name.join('.')}" class="hover:text-primary">

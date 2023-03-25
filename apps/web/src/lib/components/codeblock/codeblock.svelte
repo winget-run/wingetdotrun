@@ -6,6 +6,7 @@
 
 	export let code: string;
 	export let multiline = false;
+	export let hideCopyButton = false;
 
 	let { message, copyText, copied } = clipboard();
 </script>
@@ -25,11 +26,13 @@
 	>
 		{code}
 	</div>
-	<button
-		use:tippy={{ content: $message, hideOnClick: false, delay: $copied ? 1500 : 0 }}
-		on:click={() => copyText(code)}
-		class="flex-shrink-0 text-current hover:text-primary focus:outline-none"
-	>
-		<IconClipboard width={22} height={22} />
-	</button>
+	{#if !hideCopyButton}
+		<button
+			use:tippy={{ content: $message, hideOnClick: false, delay: $copied ? 1500 : 0 }}
+			on:click={() => copyText(code)}
+			class="flex-shrink-0 text-current hover:text-primary focus:outline-none"
+		>
+			<IconClipboard width={22} height={22} />
+		</button>
+	{/if}
 </code>

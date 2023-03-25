@@ -36,11 +36,18 @@ export const parseTags = (queryString: string): TagObject => {
  * @returns padded stats
  */
 export const padDate = (stats: { date: Date; views: number }[], period: number, sampleAmount: number) => {
+	// get the current date in milliseconds
 	const currentDateInMs = Date.now() - period;
+
+	// create a new array with the same length as the sample amount
 	const paddedStats = [...new Array(sampleAmount).keys()].reverse().map((e) => {
+		// create a new date object from the current date in milliseconds minus the current iteration in milliseconds
 		const time = new Date(currentDateInMs - e * period);
+
+		// set the hours, minutes, seconds, and milliseconds to 0
 		time.setUTCHours(0, 0, 0, 0);
 
+		// return the date if it exists in the stats array, otherwise return the date and 0 views
 		return (
 			stats.find((f) => f.date === time) ?? {
 				date: time,
