@@ -70,6 +70,7 @@ const mapPublisherPackage = (
 	publisher: pkg.publisher.name,
 	updatedAt: pkg.updatedAt,
 	createdAt: pkg.createdAt,
+	logoUrl: pkg.logoUrl,
 });
 
 export const utilRouter = router({
@@ -208,6 +209,8 @@ export const utilRouter = router({
 				license: pkg.license,
 				licenseUrl: pkg.licenseUrl,
 				featured: pkg.featured,
+				logoUrl: pkg.logoUrl,
+				bannerUrl: pkg.bannerUrl,
 				publisherId: pkg.publisherId,
 				publisher: pkg.publisher.name,
 				versions: pkg.version.map((e) => e.name),

@@ -13,14 +13,13 @@
 	import IconGlobe from "~icons/lucide/globe";
 	import IconPlus from "~icons/lucide/plus";
 	import IconScale from "~icons/lucide/scale";
-	import type { PageData } from "./$types";
 
-	export let data: PageData;
+	export let data;
+	$: ({ pack } = data);
 
 	let selectedDateIdx: number | null = null;
 	let graphWidth: number;
 
-	$: ({ publisher, pack } = data);
 	$: dates = padDate(pack.views, 1000 * 60 * 60 * 24, 7);
 	$: selectedDate = selectedDateIdx !== null ? dates[selectedDateIdx] : undefined;
 	$: isSelected = $downloads.items.find((x) => x.id === pack.id);
@@ -29,7 +28,13 @@
 		if (isSelected) {
 			downloads.remove(pack.id);
 		} else {
-			downloads.add({ id: pack.id, name: pack.name, version: pack.versions[0] });
+			downloads.add({
+				id: pack.id,
+				name: pack.name,
+				version: pack.versions[0],
+				logo: pack.logoUrl,
+				homepage: pack.homepage,
+			});
 		}
 	}
 </script>
@@ -50,12 +55,14 @@
 <header
 	class={clsx(
 		"mx-auto max-w-[1920px] bg-cover bg-center bg-no-repeat",
-		pack.banner ? "-mb-20 pt-52 pb-32" : "pt-16 pb-8",
+		pack.bannerUrl ? "-mb-20 pt-52 pb-32" : "pt-36 pb-8",
 	)}
-	style="background-image: linear-gradient(180deg, rgba(36, 40, 57, 0.65) 19.27%, #242839 100%), url({pack.banner});"
+	style={pack.bannerUrl
+		? `background-image: linear-gradient(180deg, rgba(36, 40, 57, 0.65) 19.27%, #242839 100%), url(${pack.bannerUrl});`
+		: undefined}
 >
 	<div class="container mx-auto flex w-full px-5">
-		<PackageIcon logo={pack.logo} homepage={pack.homepage} size={96} />
+		<PackageIcon logo={pack.logoUrl ?? undefined} homepage={pack.homepage ?? undefined} size={96} />
 		<div class="ml-8">
 			<h1 class="mt-2 text-4xl font-semibold leading-none text-white lg:text-5xl">
 				{pack.name}
@@ -76,7 +83,10 @@
 					</svg>
 				{/if}
 			</h1>
-			<a href="/pkg/{publisher}" class="mt-2 inline-block text-2xl font-medium italic leading-none text-title">
+			<a
+				href="/pkg/{pack.wingetId.split('.')[0]}"
+				class="mt-2 inline-block text-2xl font-medium italic leading-none text-title"
+			>
 				{pack.publisher}
 			</a>
 		</div>
@@ -147,7 +157,7 @@
 			<!-- Code snippet -->
 			<section>
 				<h2 class="mb-2 text-2xl font-semibold leading-tight text-title">How to install</h2>
-				<Codeblock code={mapDownloadsToCommands([pack])} class="mb-3 w-full" />
+				<Codeblock code={mapDownloadsToCommands([{ ...pack, id: pack.wingetId }])} class="mb-3 w-full" />
 			</section>
 
 			<!-- Description -->

@@ -1,29 +1,36 @@
+import { browser } from "$app/environment";
 import type { DownloadFormat } from "$lib/utils/downloads";
-import { writable } from "svelte/store";
+import { sessionStorable } from "$lib/utils/stores";
+import { get, writable } from "svelte/store";
+import { z } from "zod";
 
-export type Download = {
-	id: string;
-	name: string;
-	version?: string;
-	logo?: string;
-	homepage?: string;
-};
+export const downloadSchema = z.object({
+	id: z.string(),
+	name: z.string(),
+	version: z.string().optional(),
+	logo: z.string().url().nullable().optional(),
+	homepage: z.string().url().nullable().optional(),
+});
 
-export type DownloadOptions = {
-	scope?: "user" | "machine";
-	installation?: "silent" | "interactive";
-	acceptPackageAgreements?: boolean;
-	acceptSourceAgreements?: boolean;
-};
+export type Download = z.infer<typeof downloadSchema>;
 
-export type DownloadStoreParams = {
-	items: Download[];
-	options: DownloadOptions;
-	format?: DownloadFormat;
-};
+export const downloadOptionsSchema = z.object({
+	scope: z.enum(["user", "machine"]).optional(),
+	installation: z.enum(["silent", "interactive"]).optional(),
+	acceptPackageAgreements: z.boolean().optional(),
+	acceptSourceAgreements: z.boolean().optional(),
+});
+export type DownloadOptions = z.infer<typeof downloadOptionsSchema>;
+
+export const downloadStoreSchema = z.object({
+	items: z.array(downloadSchema),
+	options: downloadOptionsSchema,
+	format: z.enum(["ps1", "bat", "json"]).optional(),
+});
+export type DownloadStoreParams = z.infer<typeof downloadStoreSchema>;
 
 export const downloads = (() => {
-	const { subscribe, set, update } = writable<DownloadStoreParams>({
+	const { subscribe, set, update } = sessionStorable("downloads", downloadStoreSchema, {
 		items: [],
 		options: {
 			scope: undefined,

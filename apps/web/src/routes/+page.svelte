@@ -117,23 +117,82 @@
 	</div>
 </header>
 
-<div class="container px-5 mx-auto">
+<div class="container px-5 mx-auto mb-20">
+	<h2 id="featured-packages-title" class="text-2xl text-title font-bold mb-8">Featured Packages</h2>
+	<Feed
+		class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+		feedLabelId="popular-packages-title"
+		isLoading={false}
+	>
+		{#each data.featured || [] as pack, i}
+			<Package
+				svariaProps={{
+					index: i,
+					itemCount: 8,
+					labelId: `featured-${pack.id}`,
+					descriptionId: `featured-${pack.id}-desc`,
+				}}
+				id={pack.wingetId}
+				name={pack.name}
+				publisher={pack.publisher}
+				description={pack.description ?? undefined}
+				featured={pack.featured}
+				homepage={pack.homepage ?? undefined}
+				logoUrl={pack.logoUrl ?? undefined}
+			/>
+		{/each}
+	</Feed>
+</div>
+
+<div class="container px-5 mx-auto mb-20">
 	<h2 id="popular-packages-title" class="text-2xl text-title font-bold mb-8">Most popular packages this month</h2>
 	<Feed
 		class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
 		feedLabelId="popular-packages-title"
 		isLoading={false}
 	>
-		{#each data.packages as pack, i}
+		{#each data.popular || [] as pack, i}
 			<Package
-				highlights={null}
 				svariaProps={{
 					index: i,
 					itemCount: 8,
 					labelId: `popular-${pack.id}`,
 					descriptionId: `popular-${pack.id}-desc`,
 				}}
-				{pack}
+				id={pack.wingetId}
+				name={pack.name}
+				publisher={pack.publisher}
+				description={pack.description ?? undefined}
+				featured={pack.featured}
+				homepage={pack.homepage ?? undefined}
+				logoUrl={pack.logoUrl ?? undefined}
+			/>
+		{/each}
+	</Feed>
+</div>
+
+<div class="container px-5 mx-auto mb-20">
+	<h2 id="recent-packages-title" class="text-2xl text-title font-bold mb-8">Most recently updated</h2>
+	<Feed
+		class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+		feedLabelId="recent-packages-title"
+		isLoading={false}
+	>
+		{#each data.recent || [] as pack, i}
+			<Package
+				svariaProps={{
+					index: i,
+					itemCount: 8,
+					labelId: `recent-${pack.id}`,
+					descriptionId: `recent-${pack.id}-desc`,
+				}}
+				id={pack.wingetId}
+				name={pack.name}
+				publisher={pack.publisher}
+				description={pack.description ?? undefined}
+				featured={pack.featured}
+				homepage={pack.homepage ?? undefined}
+				logoUrl={pack.logoUrl ?? undefined}
 			/>
 		{/each}
 	</Feed>

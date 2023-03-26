@@ -1,18 +1,18 @@
 <script lang="ts">
 	import { tippy } from "$lib/actions";
 	import { clipboard } from "$lib/stores/clipboard";
-	import { downloadModalOpen, downloads, type DownloadOptions, type DownloadStoreParams } from "$lib/stores/downloads";
-	import { DOWNLOAD_FORMATS, mapDownloadsToCommands, type DownloadType } from "$lib/utils/downloads";
+	import { downloadModalOpen, downloads, type DownloadOptions } from "$lib/stores/downloads";
+	import { DOWNLOAD_FORMATS, mapDownloadsToCommands, type DownloadFormat } from "$lib/utils/downloads";
 	import { Modal, prefersReducedMotion } from "svaria";
 	import { flip } from "svelte/animate";
 	import { backOut, quadOut } from "svelte/easing";
 	import { crossfade, fade, fly } from "svelte/transition";
+	import IconClipboard from "~icons/lucide/clipboard";
+	import IconDownload from "~icons/lucide/download";
 	import IconListClear from "~icons/lucide/list-x";
 	import Button from "../button/button.svelte";
 	import Codeblock from "../codeblock/codeblock.svelte";
 	import PackageIcon from "../package/package_icon.svelte";
-	import IconClipboard from "~icons/lucide/clipboard";
-	import IconDownload from "~icons/lucide/download";
 
 	const transitionLength = 250;
 
@@ -37,7 +37,7 @@
 
 	const { copyText, message } = clipboard();
 
-	function toggleFormat(format: DownloadType) {
+	function toggleFormat(format: DownloadFormat) {
 		downloads.update((x) => {
 			format !== "ps1" ? (x.format = format) : (x.format = "ps1");
 			return x;

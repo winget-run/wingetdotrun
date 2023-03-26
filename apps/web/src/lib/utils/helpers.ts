@@ -1,6 +1,6 @@
 export const tags = ["name", "publisher", "description", "tags"] as const;
 
-type TagObject = {
+export type TagObject = {
 	[key in (typeof tags)[number]]?: string;
 } & {
 	query?: string;
