@@ -19,12 +19,14 @@ model Package {
   wingetId String @unique
 
   name        String
-  description String
-  homepage    String
-  license     String
-  licenseUrl  String
+  description String?
+  homepage    String?
+  license     String?
+  licenseUrl  String?
 
-  featured Boolean
+  featured  Boolean @default(false)
+  logoUrl   String?
+  bannerUrl String?
 
   publisher   Publisher @relation(fields: [publisherId], references: [id])
   publisherId String
@@ -32,6 +34,9 @@ model Package {
   version Version[]
   stat    Stat[]
   tag     PackageTag[]
+
+  updatedAt DateTime @default(now()) @db.Timestamp()
+  createdAt DateTime @default(now()) @db.Timestamp()
 }
 
 model Version {
