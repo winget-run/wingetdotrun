@@ -24,6 +24,7 @@ const viewsSchema = z.array(
 );
 
 const publisherPackageSchema = packageModel.merge(z.object({ publisher: z.string() }));
+const searchPackageSchema = publisherPackageSchema.merge(z.object({ score: z.number() }));
 
 const searchInputSchema = createListInputSchema(z.object({ query: z.string().min(QUERY_MIN_LEN).max(QUERY_MAX_LEN) }));
 const featuredInputSchema = z.object({
@@ -33,7 +34,7 @@ const featuredInputSchema = z.object({
 });
 const packageInputSchema = z.object({ wingetId: z.string() });
 
-const searchOutputSchema = createListOutputSchema(publisherPackageSchema);
+const searchOutputSchema = createListOutputSchema(searchPackageSchema);
 const countOutputSchema = z.object({ data: z.number() });
 const featuredOutputSchema = createGenericOutputSchema(
 	z.object({
@@ -86,7 +87,7 @@ export const utilRouter = router({
 			]);
 
 			const count = z.number().parse(countRaw);
-			const packages = z.array(publisherPackageSchema).parse(packagesRaw);
+			const packages = z.array(searchPackageSchema).parse(packagesRaw);
 
 			return {
 				data: packages,
