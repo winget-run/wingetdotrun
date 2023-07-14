@@ -18,15 +18,15 @@ A modern web-app and API for viewing, finding, and easily installing [winget](ht
 
 ## Contents
 
-- [Features](#Features)
-- [Api](#Api)
-- [Community](#Community)
-- [Roadmap](#Roadmap)
-- [Contributing](#Contributing)
-- [Support us](#Support-us)
-- [Authors](#Authors)
-- [Acknowledgments](#Acknowledgments)
-- [License](#License)
+- [Features](#features)
+- [Api](#api)
+- [Community](#community)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [Support us](#support-us)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgments)
+- [License](#license)
 
 ## Features
 
