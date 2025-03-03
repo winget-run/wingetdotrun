@@ -1,0 +1,24 @@
+{
+	// search
+	"search.exclude": {
+		"**/.git": true,
+		"**/.svelte-kit": true,
+		"**/node_modules": true,
+		"**/package": true,
+		"**/build": true
+	},
+
+	// typescript
+	"typescript.tsdk": "node_modules/typescript/lib",
+
+	// formatting
+	"editor.tabSize": 2,
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": "explicit"
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[svelte]": {
+		"editor.defaultFormatter": "svelte.svelte-vscode"
+	}
+}

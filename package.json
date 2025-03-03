@@ -1,0 +1,61 @@
+{
+	"name": "wingetdotrun",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"format": "prettier --write .",
+		"lint": "prettier --check .",
+		"db:generate": "drizzle-kit generate",
+		"db:push": "drizzle-kit push",
+		"db:pull": "drizzle-kit pull",
+		"db:migrate": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^4.0.0",
+		"@sveltejs/kit": "^2.16.0",
+		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"@tailwindcss/vite": "^4.0.0",
+		"@types/js-yaml": "^4.0.9",
+		"drizzle-kit": "^0.30.2",
+		"js-yaml": "^4.1.0",
+		"prettier": "^3.4.2",
+		"prettier-plugin-svelte": "^3.3.3",
+		"prettier-plugin-tailwindcss": "^0.6.11",
+		"radash": "^12.1.0",
+		"slugify": "^1.6.6",
+		"svelte": "^5.0.0",
+		"svelte-check": "^4.0.0",
+		"tailwindcss": "^4.0.0",
+		"typescript": "^5.0.0",
+		"typesense": "^2.0.3",
+		"vite": "^6.0.0"
+	},
+	"dependencies": {
+		"@hono/zod-openapi": "^0.18.4",
+		"@libsql/client": "^0.14.0",
+		"@scalar/hono-api-reference": "^0.5.175",
+		"drizzle-orm": "^0.38.4",
+		"drizzle-zod": "^0.7.0",
+		"hono": "^4.7.2",
+		"hono-pino": "^0.7.2",
+		"pino": "^9.6.0",
+		"pino-pretty": "^13.0.0",
+		"stoker": "^1.4.2",
+		"zod": "^3.24.2"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild"
+		]
+	},
+	"engines": {
+		"node": ">=22.0.0"
+	}
+}
